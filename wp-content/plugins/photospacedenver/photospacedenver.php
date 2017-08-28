@@ -15,12 +15,18 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-// Modify default Gravity Forms default AJAX form submission spinner image
-function spinner_url($image_src, $form) {
-	return "/wp-content/uploads/2014/08/spinner3.gif";
+//OVERRIDES THE EXISTING GRAVITY FORMS GIF
+add_filter( 'gform_ajax_spinner_url', 'spinner_url', 10, 2 );
+function spinner_url( $image_src, $form ) {
+    return "/wp-content/themes/salient-child/images/blank.gif";
 }
-add_filter("gform_ajax_spinner_url", "spinner_url", 10, 2);
 
+//ADD FUNCTIONALITY TO WP TO SUPPORT SVG
+function cc_mime_types($mimes) {
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter('upload_mimes', 'cc_mime_types');
 
 // Redirect non-admin users to homepage at login
 function customer_login_redirect($redirect_to, $request, $user) {
