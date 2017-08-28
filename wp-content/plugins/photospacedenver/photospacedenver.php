@@ -40,8 +40,6 @@ if (isset($user)) {
 	add_action('admin_bar_menu', 'change_toolbar', 999);
 }
 
-
-add_filter("gform_confirmation_anchor_1", create_function("","return 312;"));
-
-add_filter("gform_confirmation_anchor_9", create_function("","return 145;"));
-
+//COMMENTED OUT THESE ANCHORS, CLIENT WAS SAYING IT WOULD SCROLL PAST THE THANK YOU MESSAGE
+//add_filter("gform_confirmation_anchor_1", create_function("","return 312;"));
+//add_filter("gform_confirmation_anchor_9", create_function("","return 145;"));
